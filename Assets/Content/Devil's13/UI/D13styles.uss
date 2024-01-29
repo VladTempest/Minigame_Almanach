@@ -1,0 +1,25 @@
+.styleScoreText {
+    font-size: 400%;
+    -unity-font-style: bold;
+}
+
+.styleButton {
+    width: 100%;
+    height: 45%;
+    font-size: 100%;
+    -unity-font-style: bold;
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+    border-bottom-right-radius: 5%;
+    border-bottom-left-radius: 5%;
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    border-top-width: 6px;
+    border-right-width: 6px;
+    border-bottom-width: 6px;
+    border-left-width: 6px;
+    border-left-color: rgb(255, 255, 255);
+    border-right-color: rgb(255, 255, 255);
+    border-top-color: rgb(255, 255, 255);
+    border-bottom-color: rgb(255, 255, 255);
+}

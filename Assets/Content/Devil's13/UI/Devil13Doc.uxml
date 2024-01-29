@@ -1,0 +1,85 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/Content/Devil&apos;s13/UI/D13styles.uss?fileID=7433441132597879392&amp;guid=233c5db54399507459a75a38cbf8ba7c&amp;type=3#D13styles" />
+    <ui:VisualElement name="mainBackground" style="flex-grow: 1; background-color: rgba(140, 39, 119, 0.82);">
+        <ui:VisualElement name="titleBlock" style="flex-grow: 1; height: 10%; justify-content: flex-end;">
+            <ui:Label tabindex="-1" text="Devil&apos;s 13" parse-escape-sequences="true" display-tooltip-when-elided="true" name="titleText" style="font-size: 99%; -unity-font-style: bold; color: rgb(255, 255, 255);" />
+        </ui:VisualElement>
+        <ui:VisualElement name="gameBlock" style="flex-grow: 1; height: 95%;">
+            <ui:VisualElement name="opponentViewBlock" style="flex-grow: 1; height: 30%; align-items: center;">
+                <ui:VisualElement name="opponentBackground" style="flex-grow: 1; background-color: rgba(188, 56, 56, 0.78); width: 90%; align-items: center; border-top-left-radius: 15%; border-top-right-radius: 15%; border-bottom-right-radius: 15%; border-bottom-left-radius: 15%; height: 90%;">
+                    <ui:VisualElement name="opponentTitleBlock" style="flex-grow: 1; height: 5%; align-items: center; justify-content: center;">
+                        <ui:Label tabindex="-1" text="Player 01" parse-escape-sequences="true" display-tooltip-when-elided="true" name="playerTitle" style="font-size: 70%; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="opponentStatusBlock" style="flex-grow: 1; align-items: center; justify-content: center;">
+                        <ui:Label tabindex="-1" text="Ready to bet" parse-escape-sequences="true" display-tooltip-when-elided="true" name="opponentStatusTitle" class="styleScoreText" style="-unity-font-style: bold-and-italic;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="opponentScoreBlock" style="flex-grow: 1; height: 30%; flex-direction: row;">
+                        <ui:VisualElement name="opponentRoundScore" style="flex-grow: 1; width: 50%; align-items: center;">
+                            <ui:Label tabindex="-1" text="Round Score" parse-escape-sequences="true" display-tooltip-when-elided="true" name="opponentRoundScoreTitle" class="styleScoreText" />
+                            <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="opponentRoundScoreValue" class="styleScoreText" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="popponentrWinsScore" style="flex-grow: 1; width: 50%; align-items: center;">
+                            <ui:Label tabindex="-1" text="Wins" parse-escape-sequences="true" display-tooltip-when-elided="true" name="opponentWinsTitle" class="styleScoreText" />
+                            <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="opponentWinsValue" class="styleScoreText" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="resultsViewBlock" style="flex-grow: 1; height: 15%; -unity-text-align: upper-center; align-items: center; justify-content: center;">
+                <ui:VisualElement name="resultsBackground" style="height: 90%; width: 90%; border-left-color: rgba(0, 0, 0, 0); border-right-color: rgba(0, 0, 0, 0); border-top-color: rgba(0, 0, 0, 0); border-bottom-color: rgba(0, 0, 0, 0); border-top-left-radius: 15%; border-top-right-radius: 15%; border-bottom-right-radius: 15%; border-bottom-left-radius: 15%; background-color: rgba(96, 88, 88, 0.78);">
+                    <ui:Label tabindex="-1" text="Bets:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="betsTitle" class="styleScoreText" />
+                    <ui:VisualElement name="betsScoreBlock" style="flex-grow: 1; height: 30%; flex-direction: row;">
+                        <ui:VisualElement name="playerBetScoreBlock" style="flex-grow: 1; width: 40%; align-items: center;">
+                            <ui:Label tabindex="-1" text="Player 00" parse-escape-sequences="true" display-tooltip-when-elided="true" name="playerBetRoundScoreTitle" class="styleScoreText" />
+                            <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="playerBetRoundScoreValue" class="styleScoreText" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="resultMarkBlock" style="flex-grow: 1; width: 10%; align-items: center; justify-content: center;">
+                            <ui:Label tabindex="-1" text="=" parse-escape-sequences="true" display-tooltip-when-elided="true" name="resulMarkTitle" class="styleScoreText" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="opponentBetScoreBlock" style="flex-grow: 1; width: 40%; align-items: center;">
+                            <ui:Label tabindex="-1" text="Player 01" parse-escape-sequences="true" display-tooltip-when-elided="true" name="opponentBetRoundScoreTitle" class="styleScoreText" />
+                            <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="opponentBetRoundScoreValue" class="styleScoreText" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="playerViewBlock" style="flex-grow: 1; height: 50%; align-items: center; justify-content: center;">
+                <ui:VisualElement name="playerBackground" style="flex-grow: 1; width: 90%; height: 90%; background-color: rgba(36, 135, 44, 0.78); border-top-left-radius: 15%; border-top-right-radius: 15%; border-bottom-right-radius: 15%; border-bottom-left-radius: 15%;">
+                    <ui:VisualElement name="playerTitleBlock" style="flex-grow: 1; height: 5%; align-items: center; justify-content: center;">
+                        <ui:Label tabindex="-1" text="Player 00" parse-escape-sequences="true" display-tooltip-when-elided="true" name="playerTitle" style="font-size: 70%; -unity-font-style: bold;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="dicesBlock" style="flex-grow: 1; height: 25%; flex-direction: row; align-items: center; justify-content: center;">
+                        <ui:VisualElement style="flex-grow: 1; width: 10%;" />
+                        <ui:VisualElement name="diceVisual" style="flex-grow: 1; background-color: rgb(130, 130, 130); border-top-left-radius: 11%; border-top-right-radius: 11%; border-bottom-right-radius: 11%; border-bottom-left-radius: 11%; width: 10%; height: 60%; flex-wrap: nowrap; flex-direction: column; align-items: center; justify-content: center; border-left-color: rgb(0, 0, 0); border-right-color: rgb(0, 0, 0); border-top-color: rgb(0, 0, 0); border-bottom-color: rgb(0, 0, 0);">
+                            <ui:Label tabindex="-1" text="X" parse-escape-sequences="true" display-tooltip-when-elided="true" name="firstDiceNumber" style="font-size: 56%;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="VisualElement" style="flex-grow: 1;" />
+                        <ui:VisualElement name="diceVisual" style="flex-grow: 1; background-color: rgb(130, 130, 130); border-top-left-radius: 11%; border-top-right-radius: 11%; border-bottom-right-radius: 11%; border-bottom-left-radius: 11%; width: 10%; height: 60%; flex-wrap: nowrap; flex-direction: column; justify-content: center; align-items: center;">
+                            <ui:Label tabindex="-1" text="X" parse-escape-sequences="true" display-tooltip-when-elided="true" name="secondDiceNumber" style="font-size: 56%;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-grow: 1; width: 10%;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="buttonsBlock" style="flex-grow: 1; height: 30%; align-items: center; justify-content: center;">
+                        <ui:VisualElement style="flex-grow: 1;" />
+                        <ui:VisualElement name="buttonBackground" style="flex-grow: 1; align-items: center; justify-content: center; width: 90%; height: 70%;">
+                            <ui:Button text="Throw" parse-escape-sequences="true" display-tooltip-when-elided="true" name="throwButton" class="styleButton" style="width: 100%; height: 45%; border-top-left-radius: 5%; border-top-right-radius: 5%; border-bottom-right-radius: 5%; border-bottom-left-radius: 5%; font-size: 100%; -unity-font-style: bold;" />
+                            <ui:VisualElement style="flex-grow: 1;" />
+                            <ui:Button text="Bet" parse-escape-sequences="true" display-tooltip-when-elided="true" name="betButton" class="styleButton" style="width: 100%; height: 45%; border-top-left-radius: 5%; border-top-right-radius: 5%; border-bottom-right-radius: 5%; border-bottom-left-radius: 5%; font-size: 100%; -unity-font-style: bold;" />
+                        </ui:VisualElement>
+                        <ui:VisualElement style="flex-grow: 1;" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="playerScoreBlock" style="flex-grow: 1; height: 30%; flex-direction: row;">
+                        <ui:VisualElement name="playerRoundScore" style="flex-grow: 1; width: 50%; align-items: center;">
+                            <ui:Label tabindex="-1" text="Round Score" parse-escape-sequences="true" display-tooltip-when-elided="true" name="playerRoundScoreTitle" class="styleScoreText" />
+                            <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="playerRoundScoreValue" class="styleScoreText" />
+                        </ui:VisualElement>
+                        <ui:VisualElement name="playerWinsScore" style="flex-grow: 1; width: 50%; align-items: center;">
+                            <ui:Label tabindex="-1" text="Wins" parse-escape-sequences="true" display-tooltip-when-elided="true" name="playerWinsTitle" class="styleScoreText" />
+                            <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="playerWinsValue" class="styleScoreText" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
