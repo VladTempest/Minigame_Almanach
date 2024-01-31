@@ -1,8 +1,11 @@
 using System;
+using System.Collections;
 using System.Linq;
+using Devil_s13.Core.Devils13UI;
 using Devil_s13.Core.ThrowResultsProvider;
 using Devil_s13.Core.ThrowResultsProvider.Data;
 using UnityEngine;
+using Zenject;
 
 namespace Devil_s13.Core.GameLoop
 {
@@ -12,20 +15,23 @@ namespace Devil_s13.Core.GameLoop
         private GameStateDataAsset _gameStateDataAsset;
         private IThrowResultProvider _throwResultProvider;
         
-        private bool _gameIsOver = false;
-        private bool _roundIsOver = false;
+        private Devils13GameModel _model;
+        
+        private bool _isThereWinnerOfGame = false;
+        private bool _isThereWinnerOfRound = false;
 
 
+        [Inject]
+        public void Construct(Devils13GameModel model)
+        {
+         _model = model;   
+        }
+        
         public void Start()
         {
             _throwResultProvider = new RandomThrowResultProvider();
-
-            for (int i = 0; i < 2; i++)
-            {
-                _gameStateDataAsset.AddParticipantWithIndex(i);
-            }
             
-            JudgeGame();
+            StartCoroutine(JudgeGame());
         }
 
         private int DetermineWinnerIndex(PlayersThrowResultData playersData)
@@ -48,6 +54,7 @@ namespace Devil_s13.Core.GameLoop
         private void JudgeThrow(PlayersThrowResultData playersData)
         {
             var winnerIndex = DetermineWinnerIndex(playersData);
+            _model.UpdateBetResultText(winnerIndex);
             
             if (winnerIndex == -1)
             {
@@ -64,47 +71,98 @@ namespace Devil_s13.Core.GameLoop
                 Debug.Log($"Player {winnerIndex} won the round, current score: {playersData.ThrowResultData[0].ParticipantIndex} player: {_gameStateDataAsset.GetAllParticipantsGameData()[playersData.ThrowResultData[0].ParticipantIndex].CurrentScore}, {playersData.ThrowResultData[1].ParticipantIndex} player: {_gameStateDataAsset.GetAllParticipantsGameData()[playersData.ThrowResultData[1].ParticipantIndex].CurrentScore}");
             }
         }
-
-        private void JudgeGame()
+        
+        private IEnumerator JudgeGame()
+    {
+    const int cycleStopValue = 1000;
+    var cycleCounter = 0;
+    
+    ResetAllData();
+    yield return new WaitForSeconds(1); 
+    
+    CreatePlayers();
+    UpdateModel();
+    
+    while (!_isThereWinnerOfGame && cycleCounter < cycleStopValue)
+    {
+        cycleCounter++;
+        _isThereWinnerOfRound = false;
+        
+        _isThereWinnerOfGame = _gameStateDataAsset.GetAllParticipantsGameData().Any(participantGameData =>
+            participantGameData.NumberOfWins >= _gameStateDataAsset.MaxNumberOfWins);
+        
+        if (_isThereWinnerOfGame)
         {
-            const int cycleStopValue= 1000;
-            var cycleCounter = 0;
-            Debug.Log("Game started");
-            while (!_gameIsOver && cycleCounter < cycleStopValue)
+            ResetAllData();
+            UpdateModel();
+            yield return new WaitForSeconds(1); 
+            break;
+        }
+
+        while (!_isThereWinnerOfRound && cycleCounter < cycleStopValue)
+        {
+            cycleCounter++;
+            ResetDicesAndBets();
+            var playersThrowResultData = _throwResultProvider.GetThrowResult(_gameStateDataAsset);
+            UpdateModel();
+            yield return new WaitForSeconds(1); 
+            UpdateDicesAndBets(playersThrowResultData);
+            yield return new WaitForSeconds(1); 
+            
+            JudgeThrow(playersThrowResultData);
+            UpdateModel();
+            yield return new WaitForSeconds(1); 
+            ResetDicesAndBets();
+
+            _isThereWinnerOfRound = _gameStateDataAsset.GetAllParticipantsGameData().Any(participantGameData =>
+                participantGameData.CurrentScore >= _gameStateDataAsset.WinningScore);
+           
+            if (_isThereWinnerOfRound)
             {
-                cycleCounter++;
-                _roundIsOver = false;
+                _gameStateDataAsset.EndRoundReset();
+                UpdateModel();
+                yield return new WaitForSeconds(1); 
                 
-                Debug.Log("Round started");
-                _gameIsOver = _gameStateDataAsset.GetAllParticipantsGameData().Any(participantGameData =>
-                    participantGameData.NumberOfWins >= _gameStateDataAsset.MaxNumberOfWins);
-                if (_gameIsOver)
-                {
-                    Debug.Log("Game ended");
-                    _gameStateDataAsset.EndGameReset();
-                    break;
-                }
-                
-                while (!_roundIsOver && cycleCounter < cycleStopValue)
-                {
-                    cycleCounter++;
-                    Debug.Log("Throw started");
-                    var playersThrowResultData = _throwResultProvider.GetThrowResult(_gameStateDataAsset);
-                    Debug.Log($"Player {playersThrowResultData.ThrowResultData[0].ParticipantIndex} throw: Bet: {playersThrowResultData.ThrowResultData[0].BetValue}, with other {playersThrowResultData.ThrowResultData[0].OtherDiceValues[0]} on dice");
-                    Debug.Log($"Player {playersThrowResultData.ThrowResultData[1].ParticipantIndex} throw: Bet: {playersThrowResultData.ThrowResultData[1].BetValue}, with other {playersThrowResultData.ThrowResultData[1].OtherDiceValues[0]} on dice");
-                    JudgeThrow(playersThrowResultData);
-                    Debug.Log("Throw ended");
-                    _roundIsOver = _gameStateDataAsset.GetAllParticipantsGameData().Any(participantGameData =>
-                        participantGameData.CurrentScore >= _gameStateDataAsset.WinningScore);
-                    if (_roundIsOver)
-                    {
-                        Debug.Log($"Current wins: Player {playersThrowResultData.ThrowResultData[0].ParticipantIndex} wins: {_gameStateDataAsset.GetAllParticipantsGameData()[playersThrowResultData.ThrowResultData[0].ParticipantIndex].NumberOfWins}, Player {playersThrowResultData.ThrowResultData[1].ParticipantIndex} wins: {_gameStateDataAsset.GetAllParticipantsGameData()[playersThrowResultData.ThrowResultData[1].ParticipantIndex].NumberOfWins}");
-                        Debug.Log("Round ended");
-                        Debug.Log($"Winner of game: Player {_gameStateDataAsset.GetAllParticipantsGameData().FindIndex(x => x.NumberOfWins >= _gameStateDataAsset.MaxNumberOfWins)}");
-                        _gameStateDataAsset.EndRoundReset();
-                        break;
-                    }
-                }
+                break;
+            }
+        }
+    }
+}
+
+        private void ResetDicesAndBets()
+        {
+            _model.ResetBetResultText();
+            _model.ResetDiceValues();
+            _model.ResetBets();
+
+        }
+
+        private void UpdateDicesAndBets(PlayersThrowResultData playersThrowResultData)
+        {
+            _model.UpdateDiceValues(playersThrowResultData.ThrowResultData[0]);
+            _model.UpdateBetScoreForPlayer(playersThrowResultData.ThrowResultData[0].ParticipantIndex,
+                playersThrowResultData.ThrowResultData[0].BetValue);
+            _model.UpdateBetScoreForPlayer(playersThrowResultData.ThrowResultData[1].ParticipantIndex,
+                playersThrowResultData.ThrowResultData[1].BetValue);
+        }
+
+        private void UpdateModel()
+        {
+            _model.UpdateModelWithGameData(_gameStateDataAsset);
+        }
+
+        private void ResetAllData()
+        {
+            _gameStateDataAsset.EndGameReset();
+            _model.ResetBetResultText();
+            _model.ResetDiceValues();
+        }
+
+        private void CreatePlayers()
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                _gameStateDataAsset.AddParticipantWithIndex(i);
             }
         }
     }

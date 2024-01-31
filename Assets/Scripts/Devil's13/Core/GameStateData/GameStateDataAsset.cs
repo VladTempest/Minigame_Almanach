@@ -59,5 +59,10 @@ namespace Devil_s13.Core
             var winnerData = participantGameData.Find((x) => x.ParticipantIndex == participantIndex);
             winnerData.NumberOfWins++;
         }
+
+        public ParticipantGameData GetPlayerWithIndex(int index)
+        {
+            return participantGameData.Find((x) => x.ParticipantIndex == index);
+        }
     }
 }

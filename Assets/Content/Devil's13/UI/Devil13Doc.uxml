@@ -8,7 +8,7 @@
             <ui:VisualElement name="opponentViewBlock" style="flex-grow: 1; height: 30%; align-items: center;">
                 <ui:VisualElement name="opponentBackground" style="flex-grow: 1; background-color: rgba(188, 56, 56, 0.78); width: 90%; align-items: center; border-top-left-radius: 15%; border-top-right-radius: 15%; border-bottom-right-radius: 15%; border-bottom-left-radius: 15%; height: 90%;">
                     <ui:VisualElement name="opponentTitleBlock" style="flex-grow: 1; height: 5%; align-items: center; justify-content: center;">
-                        <ui:Label tabindex="-1" text="Player 01" parse-escape-sequences="true" display-tooltip-when-elided="true" name="playerTitle" style="font-size: 70%; -unity-font-style: bold;" />
+                        <ui:Label tabindex="-1" text="Player 01" parse-escape-sequences="true" display-tooltip-when-elided="true" name="opponentTitle" style="font-size: 70%; -unity-font-style: bold;" />
                     </ui:VisualElement>
                     <ui:VisualElement name="opponentStatusBlock" style="flex-grow: 1; align-items: center; justify-content: center;">
                         <ui:Label tabindex="-1" text="Ready to bet" parse-escape-sequences="true" display-tooltip-when-elided="true" name="opponentStatusTitle" class="styleScoreText" style="-unity-font-style: bold-and-italic;" />
@@ -30,14 +30,14 @@
                     <ui:Label tabindex="-1" text="Bets:" parse-escape-sequences="true" display-tooltip-when-elided="true" name="betsTitle" class="styleScoreText" />
                     <ui:VisualElement name="betsScoreBlock" style="flex-grow: 1; height: 30%; flex-direction: row;">
                         <ui:VisualElement name="playerBetScoreBlock" style="flex-grow: 1; width: 40%; align-items: center;">
-                            <ui:Label tabindex="-1" text="Player 00" parse-escape-sequences="true" display-tooltip-when-elided="true" name="playerBetRoundScoreTitle" class="styleScoreText" />
+                            <ui:Label tabindex="-1" text="Player 00" parse-escape-sequences="true" display-tooltip-when-elided="true" name="playerBetTitle" class="styleScoreText" />
                             <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="playerBetRoundScoreValue" class="styleScoreText" />
                         </ui:VisualElement>
                         <ui:VisualElement name="resultMarkBlock" style="flex-grow: 1; width: 10%; align-items: center; justify-content: center;">
                             <ui:Label tabindex="-1" text="=" parse-escape-sequences="true" display-tooltip-when-elided="true" name="resulMarkTitle" class="styleScoreText" />
                         </ui:VisualElement>
                         <ui:VisualElement name="opponentBetScoreBlock" style="flex-grow: 1; width: 40%; align-items: center;">
-                            <ui:Label tabindex="-1" text="Player 01" parse-escape-sequences="true" display-tooltip-when-elided="true" name="opponentBetRoundScoreTitle" class="styleScoreText" />
+                            <ui:Label tabindex="-1" text="Player 01" parse-escape-sequences="true" display-tooltip-when-elided="true" name="opponentBetTitle" class="styleScoreText" />
                             <ui:Label tabindex="-1" text="0" parse-escape-sequences="true" display-tooltip-when-elided="true" name="opponentBetRoundScoreValue" class="styleScoreText" />
                         </ui:VisualElement>
                     </ui:VisualElement>
