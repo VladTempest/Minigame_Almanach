@@ -27,7 +27,7 @@ namespace Devil_s13.Core.GameLoop
          _model = model;   
         }
         
-        public void Start()
+        public async void Start()
         {
             _throwResultProvider = new RandomThrowResultProvider();
             
