@@ -18,6 +18,10 @@ namespace Devil_s13.Core.Devils13UI
         
         private const string firstDiceValueLabelId = "firstDiceNumber";
         private const string secondDiceValueLabelId = "secondDiceNumber";
+        private const string firstDiceVisualId = "firstDiceVisual";
+        private const string secondDiceVisualId = "secondDiceVisual";
+        private const string ussDiceAsBet = "styleDiceChecked";
+        private const string ussDiceAsNotBet = "styleDice";
         
         private const string opponentNameLabelId = "opponentTitle";
         private const string opponentStatusLabelId = "opponentStatusTitle";
@@ -94,8 +98,20 @@ namespace Devil_s13.Core.Devils13UI
         {
             var throwButton = rootElement.Q<Button>(throwButtonId);
             var betButton = rootElement.Q<Button>(betButtonId);
-            throwButton.clicked += () => TriggerOnThrowButtonClicked();
-            betButton.clicked += () => TriggerOnBetButtonClicked();
+            throwButton.clicked += () =>
+            {
+                ResetDiceAsBet();
+                _model.throwButtonClicked.Value = true;
+            };
+            betButton.clicked += () =>
+            {
+                SetDiceAsBet(0);
+                _model.betButtonClicked.Value = true;
+            };
+            
+            
+            _model.isThrowButtonEnabled.Subscribe(value => throwButton.SetEnabled(value));
+            _model.isBetButtonEnabled.Subscribe(value => betButton.SetEnabled(value));
         }
 
         private void SetUpDiceUI(VisualElement rootElement)
@@ -106,15 +122,37 @@ namespace Devil_s13.Core.Devils13UI
             _model.firstDiceValue.Subscribe(value => firstDiceValueLabel.text = value.ToString());
             _model.secondDiceValue.Subscribe(value => secondDiceValueLabel.text = value.ToString());
         }
-
-        private void TriggerOnBetButtonClicked()
+        
+        public void SetDiceAsBet(int diceIndex)
         {
-            Debug.Log("Bet button clicked");
+            var root = GetComponent<UIDocument>().rootVisualElement;
+            VisualElement dice = null;
+            switch (diceIndex)
+            {
+                case 0:
+                    dice = root.Q<VisualElement>(firstDiceVisualId);
+                    break;
+                case 1:
+                    dice = root.Q<VisualElement>(secondDiceVisualId);
+                    break;
+            }
+            
+            if (dice != null)
+            {
+                dice.AddToClassList(ussDiceAsBet);
+                dice.RemoveFromClassList(ussDiceAsNotBet);
+            }
         }
-
-        private void TriggerOnThrowButtonClicked()
+        
+        public void ResetDiceAsBet()
         {
-            Debug.Log("Throw button clicked");
+            var root = GetComponent<UIDocument>().rootVisualElement;
+            var firstDice = root.Q<VisualElement>(firstDiceVisualId);
+            var secondDice = root.Q<VisualElement>(secondDiceVisualId);
+            firstDice.RemoveFromClassList(ussDiceAsBet);
+            firstDice.AddToClassList(ussDiceAsNotBet);
+            secondDice.RemoveFromClassList(ussDiceAsBet);
+            secondDice.AddToClassList(ussDiceAsNotBet);
         }
     }
 }

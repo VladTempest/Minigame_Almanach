@@ -15,10 +15,6 @@ namespace Devil_s13.Core.ThrowResultsProvider
             {
                 var newPlayerThrowResultData = new ThrowResultData();
                 newPlayerThrowResultData.OtherDiceValues = GetRandomDiceValues();
-                
-                var randomIndex = Random.Range(0, 2);
-                newPlayerThrowResultData.BetValue = newPlayerThrowResultData.OtherDiceValues[randomIndex];
-                newPlayerThrowResultData.OtherDiceValues.RemoveAt(randomIndex);
                 newPlayerThrowResultData.ParticipantIndex = participantGameData.ParticipantIndex;
                 
                 throwResultDatas.Add(newPlayerThrowResultData);

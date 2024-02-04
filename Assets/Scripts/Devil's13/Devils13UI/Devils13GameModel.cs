@@ -1,3 +1,4 @@
+using System;
 using Devil_s13.Core.ThrowResultsProvider.Data;
 using UniRx;
 using UnityEngine;
@@ -23,6 +24,9 @@ namespace Devil_s13.Core.Devils13UI
         
         public IReactiveProperty<bool> isBetButtonEnabled = new ReactiveProperty<bool>();
         public IReactiveProperty<bool> isThrowButtonEnabled = new ReactiveProperty<bool>();
+        
+        public IReactiveProperty<bool> betButtonClicked = new ReactiveProperty<bool>();
+        public IReactiveProperty<bool> throwButtonClicked = new ReactiveProperty<bool>();
         
         public IReactiveProperty<string> betResult = new ReactiveProperty<string>();
         
@@ -100,8 +104,8 @@ namespace Devil_s13.Core.Devils13UI
         
         public void UpdateDiceValues(ThrowResultData throwResultData)
         {
-            var firstDiceValue = throwResultData.BetValue;
-            var secondDiceValue = throwResultData.OtherDiceValues[0];
+            var firstDiceValue = throwResultData.OtherDiceValues[0];
+            var secondDiceValue = throwResultData.OtherDiceValues[1];
             
             this.firstDiceValue.Value = firstDiceValue;
             this.secondDiceValue.Value = secondDiceValue;
@@ -111,6 +115,10 @@ namespace Devil_s13.Core.Devils13UI
         {
             playerBet.Value = 0;
             opponentBet.Value = 0;
+            
+            betResult.Value = "waiting...";
         }
+        
+        
     }
 }

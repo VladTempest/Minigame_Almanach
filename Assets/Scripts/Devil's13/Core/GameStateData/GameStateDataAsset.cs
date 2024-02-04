@@ -10,6 +10,7 @@ namespace Devil_s13.Core
         public int MaxNumberOfWins = 2;
         public int WinningScore = 13;
         
+        [NonSerialized]
         private List<ParticipantGameData> participantGameData = new List<ParticipantGameData>();
 
         public void EndGameReset()
