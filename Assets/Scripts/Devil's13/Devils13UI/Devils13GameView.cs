@@ -105,7 +105,6 @@ namespace Devil_s13.Core.Devils13UI
             };
             betButton.clicked += () =>
             {
-                SetDiceAsBet(0);
                 _model.betButtonClicked.Value = true;
             };
             
@@ -116,15 +115,43 @@ namespace Devil_s13.Core.Devils13UI
 
         private void SetUpDiceUI(VisualElement rootElement)
         {
+            _model.clickedDiceWithIndex.Value = -1;
+            
             var firstDiceValueLabel = rootElement.Q<Label>(firstDiceValueLabelId);
             var secondDiceValueLabel = rootElement.Q<Label>(secondDiceValueLabelId);
 
             _model.firstDiceValue.Subscribe(value => firstDiceValueLabel.text = value.ToString());
             _model.secondDiceValue.Subscribe(value => secondDiceValueLabel.text = value.ToString());
+            
+            var firstDiceVisuals = rootElement.Q<VisualElement>(firstDiceVisualId);
+            var secondDiceVisuals = rootElement.Q<VisualElement>(secondDiceVisualId);
+            
+            firstDiceVisuals.RegisterCallback((ClickEvent evt) =>
+            {
+                
+                OnDiceVisualClicked(0);
+            });
+            secondDiceVisuals.RegisterCallback((ClickEvent evt) =>
+            {
+                OnDiceVisualClicked(1);
+            });
+
+            _model.clickedDiceWithIndex.Subscribe(value => SetDiceAsBet(value));
         }
         
-        public void SetDiceAsBet(int diceIndex)
+        private void OnDiceVisualClicked(int diceIndex)
         {
+            if (_model.firstDiceValue.Value == 0 || _model.secondDiceValue.Value == 0)
+            {
+                return;
+            }
+            _model.clickedDiceWithIndex.Value = diceIndex;
+        }
+
+        private void SetDiceAsBet(int diceIndex)
+        {
+            ResetDiceAsBet();
+            
             var root = GetComponent<UIDocument>().rootVisualElement;
             VisualElement dice = null;
             switch (diceIndex)
@@ -141,6 +168,11 @@ namespace Devil_s13.Core.Devils13UI
             {
                 dice.AddToClassList(ussDiceAsBet);
                 dice.RemoveFromClassList(ussDiceAsNotBet);
+            }
+            
+            if (diceIndex == -1)
+            {
+                ResetDiceAsBet();
             }
         }
         

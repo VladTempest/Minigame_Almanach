@@ -28,7 +28,10 @@ namespace Devil_s13.Core.Devils13UI
         public IReactiveProperty<bool> betButtonClicked = new ReactiveProperty<bool>();
         public IReactiveProperty<bool> throwButtonClicked = new ReactiveProperty<bool>();
         
+        public IReactiveProperty<int> clickedDiceWithIndex = new ReactiveProperty<int>();
+        
         public IReactiveProperty<string> betResult = new ReactiveProperty<string>();
+        
         
         
         public void UpdateModelWithGameData(GameStateDataAsset gameStateDataAsset)
@@ -115,6 +118,8 @@ namespace Devil_s13.Core.Devils13UI
         {
             playerBet.Value = 0;
             opponentBet.Value = 0;
+            
+            clickedDiceWithIndex.Value = -1;
             
             betResult.Value = "waiting...";
         }
