@@ -1,8 +1,9 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/Content/Devil&apos;s13/UI/D13styles.uss?fileID=7433441132597879392&amp;guid=233c5db54399507459a75a38cbf8ba7c&amp;type=3#D13styles" />
     <ui:VisualElement name="mainBackground" style="flex-grow: 1; background-color: rgba(140, 39, 119, 0.48);">
-        <ui:VisualElement name="titleBlock" style="flex-grow: 1; height: 10%; justify-content: flex-end;">
-            <ui:Label tabindex="-1" text="Devil&apos;s 13" parse-escape-sequences="true" display-tooltip-when-elided="true" name="titleText" style="font-size: 99%; -unity-font-style: bold; color: rgb(255, 255, 255);" />
+        <ui:VisualElement name="titleBlock" style="flex-grow: 1; height: 10%; justify-content: space-between; flex-direction: row; align-items: center; width: 100%;">
+            <ui:Label tabindex="-1" text="Devil&apos;s 13" parse-escape-sequences="true" display-tooltip-when-elided="true" name="titleText" style="font-size: 99%; -unity-font-style: bold; color: rgb(255, 255, 255); width: 50%;" />
+            <ui:Button text="BACK" parse-escape-sequences="true" display-tooltip-when-elided="true" name="backButton" style="width: 10%; -unity-text-align: middle-center; margin-right: 5%; height: 40%; font-size: 30%; border-top-left-radius: 40%; border-bottom-left-radius: 40%;" />
         </ui:VisualElement>
         <ui:VisualElement name="gameBlock" style="flex-grow: 1; height: 95%;">
             <ui:VisualElement name="opponentViewBlock" style="flex-grow: 1; height: 30%; align-items: center;">
