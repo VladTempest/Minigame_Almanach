@@ -106,7 +106,7 @@ namespace Mirror
             {
                 // Connecting
                 GUILayout.Label($"Connecting to {manager.networkAddress}..");
-                if (GUILayout.Button("Cancel Connection Attempt",GUILayout.Width(_buttonWidth), GUILayout.Height(_buttonHeight)))
+                if (GUILayout.Button("Cancel Connection Attempt",GUILayout.Width(_buttonWidth * 3), GUILayout.Height(_buttonHeight)))
                     manager.StopClient();
             }
         }
