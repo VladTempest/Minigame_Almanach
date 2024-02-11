@@ -11,16 +11,21 @@ namespace Devil_s13.Core.GameLoop
 {
     public class GameJudge : MonoBehaviour
     {
-        [SerializeField]
-        private GameStateDataAsset _gameStateDataAsset;
+        
         private IThrowResultProvider _throwResultProvider;
         private Devils13GameModel _model;
         private bool _isThereWinnerOfRound = false;
-        
+        private GameStateDataAsset _gameStateDataAsset;
+
+        public IPlayerInitializer PlayerInitializer;
+
         [Inject]
-        public void Construct(Devils13GameModel model)
+        public void Construct(Devils13GameModel model, GameStateDataAsset gameStateDataAsset, IPlayerInitializer playerInitializer)
+
         {
-         _model = model;   
+            _model = model;
+            _gameStateDataAsset = gameStateDataAsset;
+            PlayerInitializer = playerInitializer;
         }
         
         public async void Start()
@@ -84,21 +89,14 @@ namespace Devil_s13.Core.GameLoop
             _model.ResetBetResultText();
             _model.ResetDiceValues();
         }
-
-        private void CreatePlayers()
-        {
-            for (int i = 0; i < 2; i++)
-            {
-                _gameStateDataAsset.AddParticipantWithIndex(i);
-            }
-        }
+        
 
         private async UniTask RunGame()
         {
             var maxNumberOfWins = _gameStateDataAsset.MaxNumberOfWins;
             var maxRoundsCounts = (2 * maxNumberOfWins) - 1;
             
-            CreatePlayers();
+            await PlayerInitializer.CreatePlayers();
             UpdateModel();
             
             for (int i = 0; i < maxRoundsCounts; i++)

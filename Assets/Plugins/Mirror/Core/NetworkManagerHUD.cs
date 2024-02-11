@@ -23,9 +23,9 @@ namespace Mirror
 
         void OnGUI()
         {
-            GUI.skin.label.fontSize = 50; 
+            /*GUI.skin.label.fontSize = 50; 
             GUI.skin.button.fontSize = 50; 
-            GUI.skin.textField.fontSize = 50;
+            GUI.skin.textField.fontSize = 50;*/
             
             // If this width is changed, also change offsetX in GUIConsole::OnGUI
             int width = (int)  (Screen.width * 0.9f);
