@@ -11,12 +11,10 @@ namespace Devil_s13.Core.GameLoop
         {
             if (!isLocalPlayer) return;
             
-            NetworkConnection networkConnection = NetworkClient.connection;
-            var playerId = networkConnection.connectionId;
-            Debug.Log($"Player with id {playerId} connected to game. from Player.cs");
+            Debug.Log($"Player with id  connected to game. from Player.cs");
             
             NetworkSolver networkSolver = FindObjectOfType<NetworkSolver>();
-            networkSolver.CmdAddPlayerToGame(playerId);
+            networkSolver.CmdAddPlayerToGame();
             base.OnStartClient();
         }
     }
