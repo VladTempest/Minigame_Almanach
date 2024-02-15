@@ -11,7 +11,7 @@ namespace Devil_s13.Core.ThrowResultsProvider
         public PlayersThrowResultData GetThrowResult(GameStateDataAsset gameStateDataAsset)
         {
             List<ThrowResultData> throwResultDatas = new List<ThrowResultData>();
-            foreach (var participantGameData in gameStateDataAsset.GetAllParticipantsGameData())
+            foreach (var participantGameData in gameStateDataAsset.GetAllParticipantsGameData().List)
             {
                 var newPlayerThrowResultData = new ThrowResultData();
                 newPlayerThrowResultData.OtherDiceValues = GetRandomDiceValues();

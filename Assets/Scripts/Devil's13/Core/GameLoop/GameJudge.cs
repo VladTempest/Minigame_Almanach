@@ -61,7 +61,7 @@ namespace Devil_s13.Core.GameLoop
             
             _gameStateDataAsset.AddScoreToParticipant(winnerIndex, playersData.ThrowResultData[winnerIndex].OtherDiceValues.Sum());
             
-            if (_gameStateDataAsset.GetAllParticipantsGameData()[winnerIndex].CurrentScore >= _gameStateDataAsset.WinningScore) _gameStateDataAsset.AddWinToParticipant(winnerIndex);
+            if (_gameStateDataAsset.GetAllParticipantsGameData().List[winnerIndex].CurrentScore >= _gameStateDataAsset.WinningScore) _gameStateDataAsset.AddWinToParticipant(winnerIndex);
         }
         
 
@@ -105,7 +105,7 @@ namespace Devil_s13.Core.GameLoop
                 _isThereWinnerOfRound = false;
                 
                 UpdateModel();
-                if (_gameStateDataAsset.GetAllParticipantsGameData().Any(participantGameData =>
+                if (_gameStateDataAsset.GetAllParticipantsGameData().List.Any(participantGameData =>
                     participantGameData.NumberOfWins >= maxNumberOfWins)) break;
                 
                 while (!_isThereWinnerOfRound)
@@ -121,7 +121,7 @@ namespace Devil_s13.Core.GameLoop
 
                     JudgeThrow(results);
                     UpdateModel();
-                    _isThereWinnerOfRound = _gameStateDataAsset.GetAllParticipantsGameData().Any(participantGameData =>
+                    _isThereWinnerOfRound = _gameStateDataAsset.GetAllParticipantsGameData().List.Any(participantGameData =>
                         participantGameData.CurrentScore >= _gameStateDataAsset.WinningScore);
                     
                     await UniTask.WaitForSeconds(2f);
@@ -139,7 +139,7 @@ namespace Devil_s13.Core.GameLoop
 
         private void JudgeGameResult(GameStateDataAsset gameStateDataAsset)
         {
-            var winnerIndex = gameStateDataAsset.GetAllParticipantsGameData().OrderByDescending(participantGameData => participantGameData.NumberOfWins).First().ParticipantIndex;
+            var winnerIndex = gameStateDataAsset.GetAllParticipantsGameData().List.OrderByDescending(participantGameData => participantGameData.NumberOfWins).First().ParticipantIndex;
             Debug.Log($"Player {winnerIndex} won the game.");
         }
 

@@ -9,22 +9,54 @@ namespace Devil_s13.Core
     {
         public int MaxNumberOfWins = 2;
         public int WinningScore = 13;
-        
-        public int CurrentPaticipentsCount => participantGameData.Count;
-        
-        [NonSerialized]
-        private List<ParticipantGameData> participantGameData = new List<ParticipantGameData>();
+        [SerializeField] private ParticipantsDataList _gameData = new ParticipantsDataList();
+
+        public int CurrentPaticipentsCount => ListCount();
+
+        private int ListCount()
+        {
+            if (GameData == null)
+            {
+                return 0;
+            }
+            return GameData.List.Count;
+        }
+
+
+        public ParticipantsDataList GameData
+        {
+            get => _gameData;
+            set
+            {
+                _gameData = value;
+
+                if (_gameData == null)
+                {
+                    return;
+                }
+                
+                foreach (var participantGameData in _gameData.List)
+                {
+                    Debug.Log($"Participant index: {participantGameData.ParticipantIndex} score: {participantGameData.CurrentScore} wins: {participantGameData.NumberOfWins}");
+                }
+            }
+        }
 
         public void EndGameReset()
         {
-            participantGameData.Clear();
+            GameData.List.Clear();
+        }
+
+        private void OnEnable()
+        {
+            GameData.List.Clear();
         }
 
         public void EndRoundReset()
         {
-            for (int i = 0; i < participantGameData.Count; i++)
+            for (int i = 0; i < GameData.List.Count; i++)
             {
-                participantGameData[i].CurrentScore = 0;
+                GameData.List[i].CurrentScore = 0;
             }
         }
         
@@ -38,34 +70,34 @@ namespace Devil_s13.Core
                 NumberOfWins = 0
             };
             
-            participantGameData.Add(participantData);
+            GameData.List.Add(participantData);
         }
         
         public ParticipantGameData GetParticipantGameData(int participantIndex)
         {
-            return participantGameData[participantIndex];
+            return GameData.List[participantIndex];
         }
 
-        public List<ParticipantGameData> GetAllParticipantsGameData()
+        public ParticipantsDataList GetAllParticipantsGameData()
         {
-            return participantGameData;
+            return GameData;
         }
 
         public void AddScoreToParticipant(int participantIndex, int addedScore)
         {
-            var winnerData = participantGameData.Find((x) => x.ParticipantIndex == participantIndex);
+            var winnerData = GameData.List.Find((x) => x.ParticipantIndex == participantIndex);
             winnerData.CurrentScore += addedScore;
         }
 
         public void AddWinToParticipant(int participantIndex)
         {
-            var winnerData = participantGameData.Find((x) => x.ParticipantIndex == participantIndex);
+            var winnerData = GameData.List.Find((x) => x.ParticipantIndex == participantIndex);
             winnerData.NumberOfWins++;
         }
 
         public ParticipantGameData GetPlayerWithIndex(int index)
         {
-            return participantGameData.Find((x) => x.ParticipantIndex == index);
+            return GameData.List.Find((x) => x.ParticipantIndex == index);
         }
     }
 }
