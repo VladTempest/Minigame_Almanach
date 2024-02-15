@@ -1,0 +1,7 @@
+This game are here to test Unity Timeline feature
+
+You are control the sword of samurai
+There is bouncing sphere in center that you shoould cut
+You have 3 misses max.
+Sphere bouncing randomly
+Sword hight fixed

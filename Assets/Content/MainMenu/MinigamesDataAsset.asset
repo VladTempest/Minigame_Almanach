@@ -18,3 +18,8 @@ MonoBehaviour:
       m_IsDirty: 0
       m_ScenePath: Assets/Scenes/Devil's13Scene.unity
     Name: Devil's 13
+  - SceneReference:
+      m_SceneAsset: {fileID: 102900000, guid: 1e78730c4b635544089da80500b82039, type: 3}
+      m_IsDirty: 0
+      m_ScenePath: Assets/Scenes/TimelineTestScene.unity
+    Name: Timeline Test

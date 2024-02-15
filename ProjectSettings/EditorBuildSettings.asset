@@ -11,4 +11,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Devil's13Scene.unity
     guid: 353690c889992294190ceb46a1003504
+  - enabled: 1
+    path: Assets/Scenes/SamuraiCutScene.unity
+    guid: 1e78730c4b635544089da80500b82039
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
