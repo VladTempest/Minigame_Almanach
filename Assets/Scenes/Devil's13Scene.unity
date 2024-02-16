@@ -645,8 +645,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _uiDocument: {fileID: 1349802799}
-  _playButton: {fileID: 0}
-  _networkManagerHUD: {fileID: 0}
 --- !u!1 &1533444492
 GameObject:
   m_ObjectHideFlags: 0
