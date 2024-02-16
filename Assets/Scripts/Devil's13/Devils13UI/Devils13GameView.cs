@@ -1,5 +1,4 @@
 using System;
-using Mirror;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -11,12 +10,6 @@ namespace Devil_s13.Core.Devils13UI
     {
         [SerializeField]
         private UIDocument _uiDocument;
-        
-        //ToDo: deleted this temp link later
-        [SerializeField] 
-        private UnityEngine.UI.Button _playButton;
-        [SerializeField]
-        private NetworkManagerHUD _networkManagerHUD;
         
         private Devils13GameModel _model;
 
@@ -62,8 +55,6 @@ namespace Devil_s13.Core.Devils13UI
             SetUpOpponentUI(rootElement);
             SetUpPlayerUI(rootElement);
             SetUpBetResultUI(rootElement);
-            
-            _uiDocument.rootVisualElement.visible = false;
         }
 
         private void SetUpBetResultUI(VisualElement rootElement)
@@ -120,19 +111,8 @@ namespace Devil_s13.Core.Devils13UI
                 _model.betButtonClicked.Value = true;
             };
             
-            backButton.clicked += () =>
-            {
-                _uiDocument.rootVisualElement.visible = false;
-                _playButton.gameObject.SetActive(true);
-                _networkManagerHUD.enabled = true;
-            };
             
-            _playButton.onClick.AddListener(() =>
-            {
-                _uiDocument.rootVisualElement.visible = true;
-                _playButton.gameObject.SetActive(false);
-                _networkManagerHUD.enabled = false;
-            });
+            backButton.visible = false;
             
             _model.isThrowButtonEnabled.Subscribe(value => throwButton.SetEnabled(value));
             _model.isBetButtonEnabled.Subscribe(value => betButton.SetEnabled(value));
