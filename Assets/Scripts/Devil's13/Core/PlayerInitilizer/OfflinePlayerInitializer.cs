@@ -1,6 +1,5 @@
 using Cysharp.Threading.Tasks;
 using Devil_s13.Core.Devils13UI;
-using Mirror;
 using UnityEngine;
 using Zenject;
 
@@ -18,8 +17,7 @@ namespace Devil_s13.Core.GameLoop
 
         public async UniTask CreatePlayers()
         {
-            var maxPlayers = NetworkManager.singleton.maxConnections;
-
+            var maxPlayers = 2;
             for (int i = 0; i < maxPlayers; i++)
             {
                 AddPlayerToGame(i);

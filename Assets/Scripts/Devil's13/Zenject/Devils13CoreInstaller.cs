@@ -12,7 +12,7 @@ public class Devils13CoreInstaller : MonoInstaller
     public override void InstallBindings()
     {
         Container.Bind<GameStateDataAsset>().FromInstance(_gameStateDataAsset).AsSingle();
-        Container.Bind<IPlayerInitializer>().To<OnlinePlayerInitializer>().AsSingle().NonLazy();
+        Container.Bind<IPlayerInitializer>().To<OfflinePlayerInitializer>().AsSingle().NonLazy();
         Container.Bind<Devils13GameModel>().AsSingle().NonLazy(); 
         Container.Bind<Devils13GameView>().FromComponentInHierarchy().AsSingle();
         
