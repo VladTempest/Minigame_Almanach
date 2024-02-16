@@ -1,0 +1,5 @@
+D:/projects/Minigame_Almanach/.utmp/Debug/i4q2i6rv/armeabi-v7a/CMakeFiles/edit_cache.dir
+D:/projects/Minigame_Almanach/.utmp/Debug/i4q2i6rv/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+D:/projects/Minigame_Almanach/.utmp/Debug/i4q2i6rv/armeabi-v7a/FramePacing/CMakeFiles/swappywrapper.dir
+D:/projects/Minigame_Almanach/.utmp/Debug/i4q2i6rv/armeabi-v7a/FramePacing/CMakeFiles/edit_cache.dir
+D:/projects/Minigame_Almanach/.utmp/Debug/i4q2i6rv/armeabi-v7a/FramePacing/CMakeFiles/rebuild_cache.dir

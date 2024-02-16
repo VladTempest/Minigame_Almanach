@@ -51,7 +51,7 @@ public class RandomlyBounce : MonoBehaviour
     {
         if(IsCollidedWithGround() && _isBounceActive)
         {
-            _rigidbody.AddForce( new Vector3(0, Random.Range(10, 20), 0), ForceMode.Impulse);
+            _rigidbody.AddForce( new Vector3(0, Random.Range(30, 50), 0), ForceMode.Impulse);
             _rigidbody.AddTorque(new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), Random.Range(-10, 10)), ForceMode.Impulse);
          
         }
