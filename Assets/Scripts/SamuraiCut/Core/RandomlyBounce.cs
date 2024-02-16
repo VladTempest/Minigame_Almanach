@@ -9,12 +9,12 @@ public class RandomlyBounce : MonoBehaviour
     private Vector3 _initialRotation;
     private Vector3 _initialScale;
     
-    private Vector3 _errorMargin = new Vector3(0.1f, 0.1f, 0.1f);
+    private Vector3 _errorMargin = new Vector3(0.2f, 0.2f, 0.2f);
     
     [SerializeField]
     private BoxCollider _groundCollider;
     
-    private bool _isBounceActive = false;
+    private bool _isBounceActive = true;
     private void Start()
     {
         InitialSetUp();
@@ -51,7 +51,9 @@ public class RandomlyBounce : MonoBehaviour
     {
         if(IsCollidedWithGround() && _isBounceActive)
         {
-            _rigidbody.velocity = new Vector3(0, Random.Range(5, 10), 0);
+            _rigidbody.AddForce( new Vector3(0, Random.Range(10, 20), 0), ForceMode.Impulse);
+            _rigidbody.AddTorque(new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), Random.Range(-10, 10)), ForceMode.Impulse);
+         
         }
     }
 

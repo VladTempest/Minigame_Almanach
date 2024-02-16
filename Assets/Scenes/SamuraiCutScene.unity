@@ -5644,6 +5644,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1606411931}
     m_Modifications:
+    - target: {fileID: 2357332221570462039, guid: dc7d5e53db65606489370f31f5d3c27b, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 4f7d091351916bb43bbd8a01484f0831, type: 2}
+    - target: {fileID: 2357332221570462039, guid: dc7d5e53db65606489370f31f5d3c27b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915015141355285932, guid: dc7d5e53db65606489370f31f5d3c27b, type: 3}
+      propertyPath: m_Mass
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5702460762018887091, guid: dc7d5e53db65606489370f31f5d3c27b, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 4f7d091351916bb43bbd8a01484f0831, type: 2}
+    - target: {fileID: 5702460762018887091, guid: dc7d5e53db65606489370f31f5d3c27b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5838489557736506204, guid: dc7d5e53db65606489370f31f5d3c27b, type: 3}
       propertyPath: _groundCollider
       value: 
@@ -5692,10 +5712,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: TargetSphere
       objectReference: {fileID: 0}
+    - target: {fileID: 7612643056811584696, guid: dc7d5e53db65606489370f31f5d3c27b, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 4f7d091351916bb43bbd8a01484f0831, type: 2}
+    - target: {fileID: 7612643056811584696, guid: dc7d5e53db65606489370f31f5d3c27b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7651625930662206355, guid: dc7d5e53db65606489370f31f5d3c27b, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7651625930662206355, guid: dc7d5e53db65606489370f31f5d3c27b, type: 3}
       propertyPath: m_Material
       value: 
       objectReference: {fileID: 13400000, guid: 4f7d091351916bb43bbd8a01484f0831, type: 2}
+    - target: {fileID: 8795674149782080913, guid: dc7d5e53db65606489370f31f5d3c27b, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 4f7d091351916bb43bbd8a01484f0831, type: 2}
+    - target: {fileID: 8795674149782080913, guid: dc7d5e53db65606489370f31f5d3c27b, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
